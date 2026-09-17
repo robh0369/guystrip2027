@@ -102,7 +102,17 @@ a:hover{border-bottom-color:var(--link)}
 .mapcard svg{display:block; width:100%; height:auto}
 .mapscroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
 .mapscroll svg{min-width:760px}
-.mhint{display:none}
+.bmapm{display:none}
+.bmapm text{font-family:var(--mono)}
+.m2v{font-size:19px; font-weight:600; fill:var(--ink)}
+.m2s{font-size:15px; font-weight:500; fill:var(--ink-2)}
+.m2a{font-size:14px; font-weight:600; letter-spacing:.2em; fill:var(--ink-3); opacity:.9}
+.m2w{font-size:14px; font-style:italic; letter-spacing:.1em; fill:var(--ink-3); opacity:.75}
+.m2x{font-size:14px; font-weight:600; letter-spacing:.12em; fill:var(--sox)}
+.m2h{font-size:14px; font-weight:600; letter-spacing:.12em; fill:var(--harbor)}
+.m2b{font-size:14px; font-weight:600; letter-spacing:.12em; fill:var(--map-blue)}
+.m2g{font-size:14px; font-weight:600; letter-spacing:.12em; fill:var(--map-green)}
+.mp2{stroke:var(--paper); stroke-width:3}
 .mapcap{font-family:var(--mono); font-size:10.5px; line-height:1.5; color:var(--ink-3); padding:10px 12px; border-top:1px solid var(--rule-soft)}
 .bmap text{font-family:var(--mono)}
 .mw{fill:var(--map-water)}
@@ -257,12 +267,36 @@ footer .row{display:flex; justify-content:space-between; gap:20px; flex-wrap:wra
   .wrap{padding:0 20px}
   .utility .brand{display:none}
   .utility .in{justify-content:flex-end}
-  .mhint{display:inline}
   .movl{padding:10px}
   .mpanel{padding:14px 12px 18px}
   .mphead h3{font-size:22px}
   .fact{padding:14px 0 12px}
   .hero .dateline{font-size:11px; gap:8px}
+
+  /* map: swap the wide drawing for the portrait one */
+  .mapscroll{display:none}
+  .bmapm{display:block; width:100%; height:auto}
+  .mapcap{font-size:10px; padding:9px 11px}
+
+  /* tables reflow into stacked cards - no sideways scrolling */
+  .tablewrap{overflow-x:visible; margin-top:14px}
+  table.data{min-width:0 !important; display:block; font-size:15.5px}
+  table.data thead{display:none}
+  table.data tbody{display:block}
+  table.data tr{display:block; padding:15px 0; border-bottom:1px solid var(--rule)}
+  table.data tr:last-child{border-bottom:0}
+  table.data tbody tr:hover td{background:transparent}
+  table.data td{display:block; width:auto; padding:0 0 10px; border:0}
+  table.data tr td:last-child{padding-bottom:0}
+  table.data td::before{
+    content:attr(data-label); display:block;
+    font-family:var(--mono); font-size:9.5px; font-weight:600; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--ink-3); margin-bottom:4px;
+  }
+  table.data td .sub{margin-top:4px}
+  tr.total{border-top:2px solid var(--rule); border-bottom:0}
+  tr.total td{padding-top:0}
+  .homestand td.pick::before{color:var(--sox)}
   .facts .grid{grid-template-columns:1fr}
   .fact:nth-child(-n+2){border-top:1px solid var(--rule-soft)}
   .fact:first-child{border-top:0}
@@ -342,16 +376,16 @@ footer .row{display:flex; justify-content:space-between; gap:20px; flex-wrap:wra
       <thead><tr><th style="width:120px">Date</th><th style="width:170px">Game</th><th>Why</th></tr></thead>
       <tbody>
         <tr>
-          <td class="num pick">Fri 21 May</td><td class="num pick">Rangers @ Red Sox</td>
-          <td class="what"><b>This one.</b><span class="sub">Friday night games at Fenway are almost always 7:10, which leaves the whole day free for the Freedom Trail and keeps Saturday open for the harbor.</span></td>
+          <td data-label="Date" class="num pick">Fri 21 May</td><td data-label="Game" class="num pick">Rangers @ Red Sox</td>
+          <td data-label="Why" class="what"><b>This one.</b><span class="sub">Friday night games at Fenway are almost always 7:10, which leaves the whole day free for the Freedom Trail and keeps Saturday open for the harbor.</span></td>
         </tr>
         <tr>
-          <td class="num">Sat 22 May</td><td class="num">Rangers @ Red Sox</td>
-          <td class="what">Backup only<span class="sub">Saturday start times swing anywhere from 1:35 to 7:15. If it lands in the afternoon it wipes out the sail.</span></td>
+          <td data-label="Date" class="num">Sat 22 May</td><td data-label="Game" class="num">Rangers @ Red Sox</td>
+          <td data-label="Why" class="what">Backup only<span class="sub">Saturday start times swing anywhere from 1:35 to 7:15. If it lands in the afternoon it wipes out the sail.</span></td>
         </tr>
         <tr>
-          <td class="num">Sun 23 May</td><td class="num">Rangers @ Red Sox</td>
-          <td class="what">Bonus, not the plan<span class="sub">A 1:35 day game still works for anyone on an evening flight home.</span></td>
+          <td data-label="Date" class="num">Sun 23 May</td><td data-label="Game" class="num">Rangers @ Red Sox</td>
+          <td data-label="Why" class="what">Bonus, not the plan<span class="sub">A 1:35 day game still works for anyone on an evening flight home.</span></td>
         </tr>
       </tbody>
     </table>
@@ -456,7 +490,78 @@ footer .row{display:flex; justify-content:space-between; gap:20px; flex-wrap:wra
         <text class="mvs" x="130" y="679" text-anchor="middle">ABOUT 1 MILE</text>
       </svg>
       </div>
-      <figcaption class="mapcap">Simplified map. Distances are honest though: Fenway to the North End is about three miles, and everything else sits inside a comfortable walk or a short T ride.<span class="mhint"> The map drags sideways on a phone.</span></figcaption>
+
+      <svg class="bmapm" viewBox="0 0 620 800" role="img" aria-label="Portrait map of central Boston showing the North End home base and the stops for each day of the trip">
+        <defs>
+          <marker id="sailArwM" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 Z" class="mfharbor"/>
+          </marker>
+        </defs>
+
+        <rect class="mw" x="0" y="0" width="620" height="800"/>
+
+        <path class="ml2" d="M0,0 L430,0 C424,38 408,74 384,108 C360,140 328,162 288,176 C214,200 104,206 0,202 Z"/>
+        <path class="ml2" d="M480,0 L620,0 L620,150 C588,146 556,128 534,100 C514,74 496,38 480,0 Z"/>
+        <path class="ml" d="M0,244 C104,248 214,242 290,218 C332,204 366,182 392,152 C408,134 420,128 430,136 C440,146 442,166 436,190 C428,222 420,250 420,280 C420,316 430,350 444,384 C454,412 462,442 466,472 C472,510 490,536 520,554 C552,572 588,580 620,584 L620,800 L0,800 Z"/>
+        <ellipse class="ml2" cx="556" cy="300" rx="20" ry="13"/>
+
+        <text class="m2w" x="524" y="204" text-anchor="middle">BOSTON HARBOR</text>
+        <text class="m2w" x="112" y="228" text-anchor="middle">CHARLES RIVER</text>
+
+        <path class="rt-grn" d="M276,392 C226,410 164,442 118,462"/>
+        <path class="rt-ink" d="M430,330 C468,318 512,308 536,304"/>
+        <path class="rt-sox" d="M276,392 C312,372 334,358 352,344 C370,330 386,314 396,300 C400,264 400,224 400,194"/>
+        <path class="rt-sea" d="M426,338 C434,356 438,372 440,390 C450,420 460,458 470,498 C486,522 500,540 512,552"/>
+        <path class="rt-sead" d="M482,494 C526,458 574,458 590,486 C602,508 582,528 552,530 C530,532 508,524 492,514" marker-end="url(#sailArwM)"/>
+
+        <circle class="mp2 p-thu" cx="556" cy="80" r="10"/>
+        <circle class="mp2 p-fri" cx="400" cy="190" r="10"/>
+        <circle class="mp2 p-fri" cx="352" cy="344" r="10"/>
+        <circle class="mp2 p-fri" cx="276" cy="392" r="10"/>
+        <circle class="mp2 p-fri" cx="118" cy="462" r="10"/>
+        <circle class="mp2 p-fri" cx="392" cy="446" r="8"/>
+        <circle class="mp2 p-sat" cx="426" cy="338" r="10"/>
+        <circle class="mp2 p-sat" cx="440" cy="390" r="10"/>
+        <circle class="mp2 p-sat" cx="470" cy="498" r="8"/>
+        <circle class="mp2 p-sat" cx="516" cy="556" r="10"/>
+        <circle class="mp2 p-sun" cx="150" cy="268" r="10"/>
+        <path class="mstar" d="M396,288 L400,299 L412,299 L402,306 L406,318 L396,311 L386,318 L390,306 L380,299 L392,299 Z"/>
+
+        <text class="m2v" x="556" y="56" text-anchor="middle">LOGAN &#9992;</text>
+        <text class="m2v" x="386" y="186" text-anchor="end">USS Constitution</text>
+        <text class="m2v" x="414" y="286" text-anchor="start">North End</text>
+        <text class="m2s" x="414" y="302" text-anchor="start">home base</text>
+        <text class="m2v" x="340" y="340" text-anchor="end">Faneuil Hall</text>
+        <text class="m2v" x="264" y="388" text-anchor="end">Boston Common</text>
+        <text class="m2v" x="444" y="348" text-anchor="start">Long Wharf</text>
+        <text class="m2v" x="458" y="398" text-anchor="start">Rowes Wharf</text>
+        <text class="m2s" x="486" y="494" text-anchor="start">Fan Pier</text>
+        <text class="m2v" x="516" y="580" text-anchor="middle">Row 34 &middot; Harpoon</text>
+        <text class="m2s" x="380" y="442" text-anchor="end">Trillium</text>
+        <text class="m2v" x="150" y="252" text-anchor="middle">Esplanade</text>
+        <text class="m2v" x="112" y="446" text-anchor="middle">Fenway Park</text>
+        <text class="m2s" x="112" y="486" text-anchor="middle">Sox vs Rangers &middot; Fri 7:10</text>
+        <text class="m2s" x="556" y="274" text-anchor="middle">Georges Is.</text>
+
+        <text class="m2x" x="296" y="262" text-anchor="middle">FREEDOM TRAIL</text>
+        <text class="m2g" x="180" y="430" text-anchor="middle">GREEN LINE</text>
+        <text class="m2b" x="470" y="450" text-anchor="start">HARBORWALK</text>
+        <text class="m2h" x="556" y="552" text-anchor="middle">SAT SAIL</text>
+        
+
+        <text class="m2a" x="140" y="80" text-anchor="middle">CAMBRIDGE</text>
+        <text class="m2a" x="300" y="134" text-anchor="middle">CHARLESTOWN</text>
+        <text class="m2a" x="544" y="124" text-anchor="middle">EAST BOSTON</text>
+        <text class="m2a" x="530" y="640" text-anchor="middle">SEAPORT</text>
+        <text class="m2a" x="240" y="700" text-anchor="middle">SOUTH BOSTON</text>
+
+        <line class="mscale" x1="40" y1="748" x2="196" y2="748"/>
+        <line class="mscale" x1="40" y1="742" x2="40" y2="754"/>
+        <line class="mscale" x1="196" y1="742" x2="196" y2="754"/>
+        <text class="m2s" x="118" y="736" text-anchor="middle">ABOUT 1 MILE</text>
+      </svg>
+
+      <figcaption class="mapcap">Simplified map. Distances are honest though: Fenway to the North End is about three miles, and everything else sits inside a comfortable walk or a short T ride.</figcaption>
     </figure>
     <div class="mlegend">
       <span class="lgi"><span class="lstar">&#9733;</span>Home base &middot; North End</span>
@@ -486,20 +591,20 @@ footer .row{display:flex; justify-content:space-between; gap:20px; flex-wrap:wra
       <thead><tr><th style="width:130px">From</th><th style="width:210px">Nonstop airlines</th><th style="width:100px">Flight time</th><th>Search</th></tr></thead>
       <tbody>
         <tr>
-          <td class="what"><b>Chicago (ORD)</b><span class="sub">About 135 flights a week, so plenty of options</span></td>
-          <td class="what">American, United, Delta, JetBlue</td>
-          <td class="num">~2h 35m</td>
-          <td class="what">
+          <td data-label="From" class="what"><b>Chicago (ORD)</b><span class="sub">About 135 flights a week, so plenty of options</span></td>
+          <td data-label="Nonstop airlines" class="what">American, United, Delta, JetBlue</td>
+          <td data-label="Flight time" class="num">~2h 35m</td>
+          <td data-label="Search" class="what">
             <a href="https://www.google.com/travel/flights?q=Flights%20from%20ORD%20to%20BOS%20on%202027-05-20%20returning%202027-05-23" target="_blank" rel="noopener">Google Flights</a> &middot;
             <a href="https://www.kayak.com/flights/ORD-BOS/2027-05-20/2027-05-23" target="_blank" rel="noopener">Kayak</a>
             <span class="sub">Southwest also flies <a href="https://www.southwest.com/air/booking/" target="_blank" rel="noopener">Midway (MDW) to Boston</a>, which may be closer depending on the side of town.</span>
           </td>
         </tr>
         <tr>
-          <td class="what"><b>Cincinnati (CVG)</b><span class="sub">About 45 flights a week, so fewer options to work with</span></td>
-          <td class="what">Delta, American</td>
-          <td class="num">~2h 15m</td>
-          <td class="what">
+          <td data-label="From" class="what"><b>Cincinnati (CVG)</b><span class="sub">About 45 flights a week, so fewer options to work with</span></td>
+          <td data-label="Nonstop airlines" class="what">Delta, American</td>
+          <td data-label="Flight time" class="num">~2h 15m</td>
+          <td data-label="Search" class="what">
             <a href="https://www.google.com/travel/flights?q=Flights%20from%20CVG%20to%20BOS%20on%202027-05-20%20returning%202027-05-23" target="_blank" rel="noopener">Google Flights</a> &middot;
             <a href="https://www.kayak.com/flights/CVG-BOS/2027-05-20/2027-05-23" target="_blank" rel="noopener">Kayak</a>
             <span class="sub">First flight out is around 6:00am, last one lands about 11:45pm.</span>
@@ -725,16 +830,16 @@ footer .row{display:flex; justify-content:space-between; gap:20px; flex-wrap:wra
             <thead><tr><th style="width:210px">Boat</th><th style="width:110px">Cost</th><th style="width:110px">Length</th><th>Leaves from</th></tr></thead>
             <tbody>
               <tr>
-                <td class="what"><b><a href="https://libertyfleet.com/cruises/day-sailing/" target="_blank" rel="noopener">Liberty Star</a></b><span class="sub">67ft wooden schooner. The one in the photo. Cheaper and a little more hands-on.</span></td>
-                <td class="num">$35&ndash;70</td>
-                <td class="num">1.5 hrs</td>
-                <td class="what"><a href="https://www.google.com/maps/search/?api=1&query=Fan+Pier+Marina+Boston" target="_blank" rel="noopener">Fan Pier Marina</a><span class="sub">Beer and Boston-made spirits sold onboard. (617) 742-0333</span></td>
+                <td data-label="Boat" class="what"><b><a href="https://libertyfleet.com/cruises/day-sailing/" target="_blank" rel="noopener">Liberty Star</a></b><span class="sub">67ft wooden schooner. The one in the photo. Cheaper and a little more hands-on.</span></td>
+                <td data-label="Cost" class="num">$35&ndash;70</td>
+                <td data-label="Length" class="num">1.5 hrs</td>
+                <td data-label="Leaves from" class="what"><a href="https://www.google.com/maps/search/?api=1&query=Fan+Pier+Marina+Boston" target="_blank" rel="noopener">Fan Pier Marina</a><span class="sub">Beer and Boston-made spirits sold onboard. (617) 742-0333</span></td>
               </tr>
               <tr>
-                <td class="what"><b><a href="https://boston-sailing.com/public-cruises/boston-sailboat-ride-aboard-the-adirondack-schooners/" target="_blank" rel="noopener">Schooner Adirondack</a></b><span class="sub">80ft pilot schooner, bigger and a bit more polished. Runs daily.</span></td>
-                <td class="num">up to $74</td>
-                <td class="num">1.5&ndash;2 hrs</td>
-                <td class="what"><a href="https://www.google.com/maps/search/?api=1&query=Rowes+Wharf+Boston" target="_blank" rel="noopener">60 Rowes Wharf</a><span class="sub">Beer $6, wine $7, cocktails $9. No outside drinks or coolers. (617) 951-2460</span></td>
+                <td data-label="Boat" class="what"><b><a href="https://boston-sailing.com/public-cruises/boston-sailboat-ride-aboard-the-adirondack-schooners/" target="_blank" rel="noopener">Schooner Adirondack</a></b><span class="sub">80ft pilot schooner, bigger and a bit more polished. Runs daily.</span></td>
+                <td data-label="Cost" class="num">up to $74</td>
+                <td data-label="Length" class="num">1.5&ndash;2 hrs</td>
+                <td data-label="Leaves from" class="what"><a href="https://www.google.com/maps/search/?api=1&query=Rowes+Wharf+Boston" target="_blank" rel="noopener">60 Rowes Wharf</a><span class="sub">Beer $6, wine $7, cocktails $9. No outside drinks or coolers. (617) 951-2460</span></td>
               </tr>
             </tbody>
           </table>
@@ -796,29 +901,29 @@ footer .row{display:flex; justify-content:space-between; gap:20px; flex-wrap:wra
       <thead><tr><th style="width:90px">When</th><th>What</th><th style="width:140px">Timing</th><th style="width:120px">Each</th></tr></thead>
       <tbody>
         <tr>
-          <td class="pri now">Now-ish</td>
-          <td class="what"><b><a href="https://www.mlb.com/redsox/tickets/single-game-tickets" target="_blank" rel="noopener">Red Sox tickets</a>, Fri 21 May</b><span class="sub">Five seats in one row at around $120 each. Single-game sales for 2027 usually open in December, and seats are already showing up on resale.</span></td>
-          <td class="when">Dec 2026</td><td class="num">$120</td>
+          <td data-label="When" class="pri now">Now-ish</td>
+          <td data-label="What" class="what"><b><a href="https://www.mlb.com/redsox/tickets/single-game-tickets" target="_blank" rel="noopener">Red Sox tickets</a>, Fri 21 May</b><span class="sub">Five seats in one row at around $120 each. Single-game sales for 2027 usually open in December, and seats are already showing up on resale.</span></td>
+          <td data-label="Timing" class="when">Dec 2026</td><td data-label="Each" class="num">$120</td>
         </tr>
         <tr>
-          <td class="pri now">Now-ish</td>
-          <td class="what"><b>The house, 3 nights</b><span class="sub">Legal inventory is thin because of the owner-occupied rule, so good places go early. Registration number required.</span></td>
-          <td class="when">Nov 2026&ndash;Jan 2027</td><td class="num">$270&ndash;450</td>
+          <td data-label="When" class="pri now">Now-ish</td>
+          <td data-label="What" class="what"><b>The house, 3 nights</b><span class="sub">Legal inventory is thin because of the owner-occupied rule, so good places go early. Registration number required.</span></td>
+          <td data-label="Timing" class="when">Nov 2026&ndash;Jan 2027</td><td data-label="Each" class="num">$270&ndash;450</td>
         </tr>
         <tr>
-          <td class="pri soon">Then</td>
-          <td class="what"><b>Flights</b><span class="sub">Cincinnati picks the time, Chicago matches it. Same airline if possible. Sunday departures late afternoon or evening.</span></td>
-          <td class="when">4&ndash;5 months out</td><td class="num">Varies</td>
+          <td data-label="When" class="pri soon">Then</td>
+          <td data-label="What" class="what"><b>Flights</b><span class="sub">Cincinnati picks the time, Chicago matches it. Same airline if possible. Sunday departures late afternoon or evening.</span></td>
+          <td data-label="Timing" class="when">4&ndash;5 months out</td><td data-label="Each" class="num">Varies</td>
         </tr>
         <tr>
-          <td class="pri soon">Then</td>
-          <td class="what"><b><a href="https://libertyfleet.com/cruises/day-sailing/" target="_blank" rel="noopener">Saturday sail</a></b><span class="sub">Small boats and a popular slot on a May Saturday. Group picks the boat first.</span></td>
-          <td class="when">1 month out</td><td class="num">$35&ndash;75</td>
+          <td data-label="When" class="pri soon">Then</td>
+          <td data-label="What" class="what"><b><a href="https://libertyfleet.com/cruises/day-sailing/" target="_blank" rel="noopener">Saturday sail</a></b><span class="sub">Small boats and a popular slot on a May Saturday. Group picks the boat first.</span></td>
+          <td data-label="Timing" class="when">1 month out</td><td data-label="Each" class="num">$35&ndash;75</td>
         </tr>
         <tr>
-          <td class="pri later">Easy</td>
-          <td class="what"><b>Dinner reservations</b><span class="sub">Saturday in the Seaport matters most. Thursday in the North End is forgiving.</span></td>
-          <td class="when">2&ndash;4 weeks out</td><td class="num">n/a</td>
+          <td data-label="When" class="pri later">Easy</td>
+          <td data-label="What" class="what"><b>Dinner reservations</b><span class="sub">Saturday in the Seaport matters most. Thursday in the North End is forgiving.</span></td>
+          <td data-label="Timing" class="when">2&ndash;4 weeks out</td><td data-label="Each" class="num">n/a</td>
         </tr>
       </tbody>
     </table>
@@ -835,13 +940,13 @@ footer .row{display:flex; justify-content:space-between; gap:20px; flex-wrap:wra
     <table class="data">
       <thead><tr><th>Line</th><th style="width:180px">Basis</th><th style="width:140px">Each</th></tr></thead>
       <tbody>
-        <tr><td class="what"><b>The house</b><span class="sub">3 nights, split five ways</span></td><td class="when">$450&ndash;750 / night</td><td class="num">$270&ndash;450</td></tr>
-        <tr><td class="what"><b>Red Sox ticket</b><span class="sub">Grandstand, agreed at $120</span></td><td class="when">Friday night</td><td class="num">$120</td></tr>
-        <tr><td class="what"><b>Harbor sail</b><span class="sub">Public trip, roughly 2 hours</span></td><td class="when">Saturday</td><td class="num">$35&ndash;75</td></tr>
-        <tr><td class="what"><b>Food and drinks</b><span class="sub">Three and a half days, two big nights</span></td><td class="when">~$110 / day</td><td class="num">$350&ndash;500</td></tr>
-        <tr><td class="what"><b>Ballpark extras</b><span class="sub">Pre-game beers, food, team store damage</span></td><td class="when">Friday</td><td class="num">$75&ndash;125</td></tr>
-        <tr><td class="what"><b>Getting around</b><span class="sub">T fares and a handful of Ubers</span></td><td class="when">No car</td><td class="num">$50&ndash;80</td></tr>
-        <tr class="total"><td class="what"><b>Total</b></td><td class="when">Rough estimate</td><td class="num">$900&ndash;1,350</td></tr>
+        <tr><td data-label="Line" class="what"><b>The house</b><span class="sub">3 nights, split five ways</span></td><td data-label="Basis" class="when">$450&ndash;750 / night</td><td data-label="Each" class="num">$270&ndash;450</td></tr>
+        <tr><td data-label="Line" class="what"><b>Red Sox ticket</b><span class="sub">Grandstand, agreed at $120</span></td><td data-label="Basis" class="when">Friday night</td><td data-label="Each" class="num">$120</td></tr>
+        <tr><td data-label="Line" class="what"><b>Harbor sail</b><span class="sub">Public trip, roughly 2 hours</span></td><td data-label="Basis" class="when">Saturday</td><td data-label="Each" class="num">$35&ndash;75</td></tr>
+        <tr><td data-label="Line" class="what"><b>Food and drinks</b><span class="sub">Three and a half days, two big nights</span></td><td data-label="Basis" class="when">~$110 / day</td><td data-label="Each" class="num">$350&ndash;500</td></tr>
+        <tr><td data-label="Line" class="what"><b>Ballpark extras</b><span class="sub">Pre-game beers, food, team store damage</span></td><td data-label="Basis" class="when">Friday</td><td data-label="Each" class="num">$75&ndash;125</td></tr>
+        <tr><td data-label="Line" class="what"><b>Getting around</b><span class="sub">T fares and a handful of Ubers</span></td><td data-label="Basis" class="when">No car</td><td data-label="Each" class="num">$50&ndash;80</td></tr>
+        <tr class="total"><td data-label="Line" class="what"><b>Total</b></td><td data-label="Basis" class="when">Rough estimate</td><td data-label="Each" class="num">$900&ndash;1,350</td></tr>
       </tbody>
     </table>
   </div>
