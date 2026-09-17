@@ -100,31 +100,27 @@ a:hover{border-bottom-color:var(--link)}
 .mapcard{margin:20px 0 0; background:var(--surface); box-shadow:var(--shadow)}
 .mapcard figure{margin:0}
 .mapcard svg{display:block; width:100%; height:auto}
-.mapscroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
-.mapscroll svg{min-width:760px}
-.bmapm{display:none}
-.bmapm text{font-family:var(--mono)}
-.m2v{font-size:19px; font-weight:600; fill:var(--ink)}
-.m2s{font-size:15px; font-weight:500; fill:var(--ink-2)}
-.m2a{font-size:14px; font-weight:600; letter-spacing:.2em; fill:var(--ink-3); opacity:.9}
-.m2w{font-size:14px; font-style:italic; letter-spacing:.1em; fill:var(--ink-3); opacity:.75}
-.m2x{font-size:14px; font-weight:600; letter-spacing:.12em; fill:var(--sox)}
-.m2h{font-size:14px; font-weight:600; letter-spacing:.12em; fill:var(--harbor)}
-.m2b{font-size:14px; font-weight:600; letter-spacing:.12em; fill:var(--map-blue)}
-.m2g{font-size:14px; font-weight:600; letter-spacing:.12em; fill:var(--map-green)}
-.mp2{stroke:var(--paper); stroke-width:3}
+.bmap2{display:block; width:100%; height:auto}
+.bmap2 text{font-family:var(--mono); paint-order:stroke; stroke:var(--map-land); stroke-width:3px; stroke-linejoin:round}
+.mwx{fill:var(--map-water); stroke:var(--map-stroke); stroke-width:.8}
+.mfink{fill:var(--ink-3)}
+.lyM{display:none}
+.mvL{font-size:24px; font-weight:600; fill:var(--ink)}
+.mvsL{font-size:20px; font-weight:500; fill:var(--ink-2)}
+.mareaL{font-size:19px; font-weight:600; letter-spacing:.22em; fill:var(--ink-3); opacity:.85}
+.mwlL{font-size:20px; font-style:italic; letter-spacing:.12em; fill:var(--ink-3); opacity:.8}
 .mapcap{font-family:var(--mono); font-size:10.5px; line-height:1.5; color:var(--ink-3); padding:10px 12px; border-top:1px solid var(--rule-soft)}
 .bmap text{font-family:var(--mono)}
 .mw{fill:var(--map-water)}
-.ml{fill:var(--map-land); stroke:var(--map-stroke); stroke-width:1.2}
-.ml2{fill:var(--map-land2); stroke:var(--map-stroke); stroke-width:1.2}
+.ml{fill:var(--map-land); stroke:var(--map-stroke); stroke-width:.8}
+.ml2{fill:var(--map-land2); stroke:var(--map-stroke); stroke-width:.8}
 .rt-sox{fill:none; stroke:var(--sox); stroke-width:3; stroke-dasharray:9 5; stroke-linecap:round}
 .rt-sea{fill:none; stroke:var(--map-blue); stroke-width:3; stroke-dasharray:9 5; stroke-linecap:round}
 .rt-sead{fill:none; stroke:var(--harbor); stroke-width:3; stroke-dasharray:.5 7; stroke-linecap:round}
 .rt-grn{fill:none; stroke:var(--map-green); stroke-width:2.6; stroke-dasharray:4 5; stroke-linecap:round}
 .rt-ink{fill:none; stroke:var(--ink-3); stroke-width:2; stroke-dasharray:1.5 6; stroke-linecap:round}
 .mfharbor{fill:var(--harbor)}
-.mp{stroke:var(--paper); stroke-width:2.5}
+.mp{stroke:var(--paper); stroke-width:2}
 .p-thu{fill:var(--brass)} .p-fri{fill:var(--sox)} .p-sat{fill:var(--harbor)} .p-sun{fill:var(--ink-2)}
 .mstar{fill:var(--ink); stroke:var(--paper); stroke-width:1.5}
 .mv{font-size:13px; font-weight:600; fill:var(--ink)}
@@ -273,9 +269,9 @@ footer .row{display:flex; justify-content:space-between; gap:20px; flex-wrap:wra
   .fact{padding:14px 0 12px}
   .hero .dateline{font-size:11px; gap:8px}
 
-  /* map: swap the wide drawing for the portrait one */
-  .mapscroll{display:none}
-  .bmapm{display:block; width:100%; height:auto}
+  /* map: bigger label layer for phone legibility */
+  .lyD{display:none}
+  .lyM{display:block}
   .mapcap{font-size:10px; padding:9px 11px}
 
   /* tables reflow into stacked cards - no sideways scrolling */
@@ -406,162 +402,83 @@ footer .row{display:flex; justify-content:space-between; gap:20px; flex-wrap:wra
   <p class="sec-sub">Boston is small. The whole weekend fits inside about four miles of city wrapped around a harbor and a river, and most of it connects on foot. The Map button in the top bar pulls this up from anywhere on the page, and the <a href="https://www.mbta.com/schedules/subway" target="_blank" rel="noopener">full subway map</a> is worth a look before anyone tries to navigate the T.</p>
   <div id="mapAll">
     <figure class="mapcard">
-      <div class="mapscroll">
-      <svg class="bmap" viewBox="0 0 1000 720" role="img" aria-label="Simplified map of central Boston showing the North End home base and the stops for each day of the trip">
-        <defs>
-          <marker id="sailArw" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto">
-            <path d="M0,0 L10,5 L0,10 Z" class="mfharbor"/>
-          </marker>
-        </defs>
+      <svg class="bmap2" viewBox="0 0 1000 578" role="img" aria-label="Map of central Boston built from real coastline data, showing the North End home base and the stops for each day of the trip">
+  <defs>
+    
+    <marker id="arwInk" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" class="mfink"/></marker>
+  </defs>
+  <rect class="mw" x="0" y="0" width="1000" height="578"/>
+  <path class="ml"  d="M865.9,603.1 L878.9,577.8 L895.4,570.1 L896.3,562.9 L889.9,538.4 L881.9,538.2 L882.4,529.6 L852.9,504.3 L710.6,507.3 L710.9,515.5 L714.3,515.5 L714.2,526.1 L705.4,526.3 L705.6,508.4 L674.8,510.3 L675.1,524.1 L672.3,524.9 L663,524.2 L662.1,508.5 L658.4,507.1 L642,510.4 L627.5,509.2 L623.8,527.2 L619.3,529.7 L618.1,548.2 L616.5,534.2 L608.7,540.2 L599,534.9 L610.2,526 L630.1,494.4 L629.8,484.2 L638.4,484 L643.6,488.6 L783.2,485.7 L783.3,473.8 L750.4,474.3 L750.3,471.2 L746.2,471.2 L746,466.9 L740.7,467 L740.7,464.4 L700.2,463.4 L704.2,460.1 L742.4,459.5 L743,457.3 L770.7,458.8 L770.7,444.1 L744.2,429.2 L738.5,430.3 L689.3,402.3 L678.4,421.8 L671.8,427.1 L665.3,423.6 L679.5,396.4 L676.9,395.7 L664.8,417.1 L661.6,417.7 L672.2,396.4 L671.5,392.2 L656,418.3 L649.5,414.8 L643.1,426.4 L627.8,418 L647.5,382.7 L638.6,377.7 L618.9,413 L610.3,408.2 L629.9,372.6 L618.1,366.1 L597.8,400.6 L590.9,391.7 L608.2,362.2 L604.4,360.1 L596.9,370.2 L590,366.9 L587.5,370.3 L577.4,364 L585.4,348.1 L579.5,345.4 L577.6,347.9 L577.6,344.7 L573.5,343.5 L557.3,343.9 L541.2,353.9 L523.9,385.4 L507.3,375 L519.1,355 L514.9,350.6 L517.2,348 L521,351.3 L532,329.9 L527.2,331.1 L528.6,325.3 L534.3,325.3 L534.3,321.7 L528.5,320.4 L536.8,317.6 L535.5,314 L530.1,315.7 L532.3,303.3 L525.8,304.8 L524.9,300.1 L531,295.9 L541.4,295.7 L542,292 L541.3,288.2 L521,292.7 L521.3,287.3 L548.6,282.4 L548.1,275.2 L534.3,279.2 L529.6,274.3 L520.1,275.3 L519.7,260.7 L523.6,259 L531.9,262.3 L532.6,265.8 L546.2,259 L545.2,255.5 L535.4,257.5 L519.9,251 L519.8,246 L532.5,250.7 L536.2,248.5 L533.3,247.4 L536,239.9 L529.7,239.2 L534.1,227.1 L519.4,223.2 L519.2,220.4 L538.2,222.7 L538.2,217.5 L529.3,216.8 L526.8,211.2 L527.4,208.6 L535.5,207.2 L535.2,204.7 L531.1,204.8 L535,202.1 L534.3,199 L523.5,201.1 L532.8,194.8 L528.2,194.3 L530,189.1 L527.9,186.8 L519.8,194 L500.6,177.8 L481.3,171 L461.1,175.2 L453,184.7 L447.4,185 L448.1,190.6 L445.1,192.1 L442.8,188.1 L430.5,195.1 L428.3,183.2 L430.7,173.9 L426.5,173.5 L424.4,165.1 L432.6,156.7 L434,159.1 L436.8,157.5 L434.4,153.3 L440.3,151.6 L436.5,146.2 L439.6,143.2 L457.7,151.7 L472.2,142.8 L457.1,131.3 L464.9,126.4 L482.7,126.6 L474.7,114.7 L484.3,125.2 L487.9,121 L490.4,124 L493.3,121.6 L484.9,105.9 L506.5,127.6 L519.9,116.8 L523.1,98.6 L520.8,96 L537.1,67 L535,60.7 L550,74.4 L544,46.2 L520.4,41.1 L518.9,43.8 L465.3,32.2 L450.8,25.5 L450.2,20.1 L461.4,14.9 L463.8,16.6 L460.9,18.7 L548.3,38 L551.7,22.5 L529.3,16.9 L534.1,10.9 L549.9,15.2 L548.5,2 L539.6,-7.1 L-200,-60 L-200,800 L866,800 Z"/>
+  <path class="ml"  d="M789.2,618.7 L773.9,594.8 L772.3,578.9 L775.8,569.5 L785.7,558.1 L801.9,550.1 L835.2,547.3 L861.7,552.5 L865.4,556.9 L861.9,562.7 L868.2,563.4 L871.5,573.3 L866.5,584.9 L865.3,600.8 L900,800 L760,800 Z"/>
+  <path class="ml2" d="M1072.5,260 L1057,265.4 L1037.8,262.4 L1025.3,272 L1008.7,276.5 L1000.5,274 L996.2,265 L988.6,262.3 L965.5,238.4 L968.1,227.9 L962.5,216.1 L948.4,216.6 L959.1,189.2 L965,196.1 L977,200 L985.6,196.3 L985.6,191.8 L972.8,180.1 L965.7,168.6 L999.8,73.7 L993.5,67 L958.7,58.7 L937.7,46.7 L921.7,51.8 L909.4,73.2 L905,88.1 L900.9,91.6 L902.2,98.1 L887,116 L891.2,125 L877.4,140.7 L861.4,135.2 L834.3,107.4 L839.2,96.8 L811.6,80.2 L804.2,71.5 L804.4,65.7 L832.6,32.8 L838.1,32.9 L847.4,45.9 L860.7,42.9 L860.3,25.6 L864.5,23.7 L875.6,31.4 L879.6,30.6 L883.7,-2.2 L894.5,-15.4 L906.9,-19.7 L925.2,-15.8 L920,-200 L1300,-200 L1300,270 Z"/>
+  <path class="ml2" d="M769.5,-34.5 L774.2,-30.7 L735.9,-6.4 L735.4,4.2 L723,3.3 L718.6,-6.1 L715.1,-6.8 L709.5,-4.1 L709.5,1.1 L684.1,3.1 L677.1,-6.5 L677.3,-17.1 L662.2,-21.9 L660.5,-12.4 L648.5,-18.5 L642.9,-12.4 L622.8,-11.7 L622.5,-5.3 L616.5,-7 L613.4,8.3 L598,10.7 L603.1,46.2 L606.3,47.9 L592.4,51.6 L592.2,62.7 L598.3,62.3 L599.7,68.4 L603.8,68.5 L599.1,73.4 L605.8,73.3 L606.5,88.2 L597.7,86.1 L596.9,88.8 L602.1,91.2 L600.2,97.9 L607.4,108.8 L598.8,119.4 L600.8,124 L596.6,124.8 L593.9,130 L585.5,124.8 L580.4,126.9 L575.7,121.3 L574.3,123.8 L582.8,129.2 L580.6,133.1 L571.5,129.4 L582.2,137.8 L569.1,134.1 L578.2,141.4 L572.3,146.2 L575.2,147.5 L573.3,153.1 L582.6,156 L578.9,163.3 L590.4,168.3 L592.8,174.9 L599.2,176.8 L592.8,191.3 L601.1,191.1 L596.2,204.2 L612.3,211.5 L601.7,229 L612.2,235.5 L623.3,218.8 L631.8,221.9 L620.7,240.9 L628,245.3 L638.6,227.3 L636.5,226 L641.2,222.7 L650.7,228.3 L640.8,246.6 L643,248.5 L653.1,229.8 L664.9,236.3 L670.6,233.5 L671.6,240.3 L656.6,265.2 L673.1,240.8 L675.8,242.3 L674.7,276.9 L676.9,248.9 L685.8,249.5 L685.8,266.7 L687.5,249.3 L690.6,252.7 L694.3,234.4 L696.4,252.7 L696.8,246.3 L702.4,246.8 L703.6,238.3 L709.7,237.7 L712.2,244.1 L722.2,239.3 L724.6,234.6 L721.5,233 L729,219.9 L738.1,224.2 L743.7,234 L743.1,253.3 L725.5,306.9 L844,386.7 L912.7,447.1 L937.8,441.2 L941.5,379 L950.8,348.1 L948.7,343.3 L941.4,343.3 L937.3,357.5 L931.5,357.3 L922.8,343.9 L926.7,336.6 L937.8,335.6 L948.7,327.5 L966.3,322.3 L989.5,319.8 L1000.7,325.3 L1033.1,356.6 L1047.1,354.3 L1057.9,357.4 L1106.9,310.2 L1102.3,291 L1103.4,282.2 L1096,265.5 L1087.7,258.5 L1300,300 L1300,-200 L740,-200 Z"/>
+  <path class="mwx" d="M257.3,347.7 L218.1,365.9 L213.7,364 L175.3,377.3 L145.2,382.3 L124.1,393 L89.2,392.6 L66.5,385.2 L34.8,388.2 L-23.4,379.4 L-22.4,368.5 L40.1,363.1 L254.5,268.8 L265.8,267.7 L265.8,264.7 L268.2,266.3 L270.5,263.7 L271.1,249.6 L318.9,183.3 L327.9,189.4 L326.6,191.2 L339.4,197.5 L338.1,202.4 L345.7,207.8 L341.6,222.7 L336.7,220.9 L328.7,223.9 L319.3,234.7 L317.6,280.4 L314.4,291.5 L317,297.8 L314.1,307.8 L308.5,311.5 L301.8,326.4 L294.9,333.3 L257.3,347.7 Z"/>
 
-        <rect class="mw" x="0" y="0" width="1000" height="720"/>
+  <path class="rt-grn" d="M414.5,327.3 L392.7,367.9 L336.4,381.4 L276.4,406 L182.7,431.8 L114.5,419.5 L98.2,446.6"/>
+  <path class="rt-ink" d="M527.3,283 L618.2,332.2 L754.5,430.6 L909.1,529" marker-end="url(#arwInk)"/>
+  <path class="rt-sea" d="M527.3,283 L522.7,326 L527.3,348.2 L563.6,359.2 L586.4,362.9 L566.4,390"/>
+  <path class="rt-sead" d="M550,313.7 L618.2,258.4 L690.9,283 L709.1,344.5 L636.4,381.4 L568.2,338.3"/>
+  <path class="rt-sox" d="M385.5,344.5 L434.5,311.3 L486.4,283 L472.7,258.4 L493.6,237.4 L487.3,205.5 L431.8,185.8 L418.2,137.8 L472.7,130.4"/>
 
-        <!-- Cambridge / Charlestown -->
-        <path class="ml2" d="M0,0 L726,0 C724,40 716,90 700,140 C688,178 678,208 664,232 C658,242 652,248 648,252 C610,282 556,304 492,320 C420,338 320,350 210,356 L0,362 Z"/>
-        <!-- East Boston / Logan -->
-        <path class="ml2" d="M775,0 L1000,0 L1000,238 C952,252 905,247 862,222 C824,200 795,160 781,110 C776,75 774,38 775,0 Z"/>
-        <!-- Boston peninsula + Seaport, with Fort Point Channel notch -->
-        <path class="ml" d="M0,436 L150,430 C260,422 360,410 445,392 C500,380 548,362 585,344 C615,330 640,322 660,322 C685,323 698,338 697,356 C696,382 686,404 674,424 C666,438 660,452 658,466 C650,478 640,488 628,502 C614,520 606,542 604,566 C603,582 608,594 620,598 C634,602 646,592 652,576 C660,554 668,532 682,514 C692,502 706,494 724,490 C770,482 820,486 866,502 C900,514 920,536 916,566 C910,600 878,640 836,676 C816,694 800,708 790,720 L0,720 Z"/>
-        <!-- Georges Island -->
-        <ellipse class="ml2" cx="938" cy="680" rx="16" ry="11"/>
+  <circle class="mp p-thu" cx="798.2" cy="214.1" r="6"/>
+  <circle class="mp p-fri" cx="385.5" cy="344.5" r="6"/>
+  <circle class="mp p-fri" cx="486.4" cy="283" r="6"/>
+  <circle class="mp p-fri" cx="472.7" cy="130.4" r="6"/>
+  <circle class="mp p-fri" cx="98.2" cy="446.6" r="6"/>
+  <circle class="mp p-fri" cx="556.4" cy="391.2" r="4.5"/>
+  <circle class="mp p-sat" cx="527.3" cy="283" r="6"/>
+  <circle class="mp p-sat" cx="522.7" cy="326" r="6"/>
+  <circle class="mp p-sat" cx="586.4" cy="362.9" r="4.5"/>
+  <circle class="mp p-sat" cx="566.4" cy="390" r="6"/>
+  <circle class="mp p-sat" cx="660.9" cy="445.4" r="6"/>
+  <circle class="mp p-sun" cx="311.8" cy="322.3" r="6"/>
+  <path class="mstar" d="M494.5,220.1 L497.4,226.9 L504.5,226.9 L499,231.9 L501,239.1 L494.5,234.6 L488,239.1 L490,231.9 L484.5,226.9 L491.6,226.9 Z"/>
 
-        <!-- water labels -->
-        <text class="mwl" x="846" y="330" text-anchor="middle">BOSTON HARBOR</text>
-        <text class="mwl" x="60" y="398" text-anchor="start">CHARLES RIVER</text>
-        <text class="mwl" x="612" y="618" text-anchor="middle">FORT POINT CHANNEL</text>
-
-        <!-- routes -->
-        <path class="rt-ink" d="M673,420 C780,430 880,430 940,478 C980,520 976,596 952,655 C947,666 942,673 938,674"/>
-        <path class="rt-grn" d="M552,418 C450,470 340,520 228,542"/>
-        <path class="rt-sea" d="M673,420 C666,436 662,446 661,458 C660,472 668,482 682,490 C696,496 710,492 724,492 C752,494 778,504 802,516"/>
-        <path class="rt-sead" d="M760,478 C800,440 852,414 892,434 C916,446 914,470 888,480 C864,489 836,486 806,474" marker-end="url(#sailArw)"/>
-        <path class="rt-sox" d="M552,412 Q585,398 622,392 Q648,384 655,362 Q660,350 663,336 Q660,300 644,248"/>
-
-        <!-- pins -->
-        <circle class="mp p-thu" cx="885" cy="120" r="7"/>
-        <circle class="mp p-fri" cx="552" cy="412" r="7"/>
-        <circle class="mp p-fri" cx="622" cy="392" r="7"/>
-        <circle class="mp p-fri" cx="642" cy="246" r="7"/>
-        <circle class="mp p-fri" cx="215" cy="545" r="7"/>
-        <circle class="mp p-fri" cx="694" cy="530" r="6"/>
-        <circle class="mp p-sat" cx="673" cy="420" r="7"/>
-        <circle class="mp p-sat" cx="661" cy="458" r="7"/>
-        <circle class="mp p-sat" cx="724" cy="492" r="5"/>
-        <circle class="mp p-sat" cx="802" cy="516" r="7"/>
-        <circle class="mp p-sun" cx="332" cy="416" r="7"/>
-        <circle class="mp p-sun" cx="424" cy="472" r="7"/>
-        <path class="mstar" d="M663,324 L666,332 L675,332 L668,338 L671,347 L663,342 L655,347 L658,338 L651,332 L660,332 Z"/>
-
-        <!-- pin labels -->
-        <text class="mv" x="885" y="102" text-anchor="middle">LOGAN &#9992;</text>
-        <text class="mv" x="676" y="331" text-anchor="start">North End</text>
-        <text class="mvs" x="676" y="345" text-anchor="start">home base</text>
-        <text class="mv" x="544" y="417" text-anchor="end">Boston Common</text>
-        <text class="mv" x="633" y="387" text-anchor="start">Faneuil Hall</text>
-        <text class="mv" x="631" y="242" text-anchor="end">USS Constitution</text>
-        <text class="mv" x="215" y="564" text-anchor="middle">Fenway Park</text>
-        <text class="mvs" x="215" y="578" text-anchor="middle">Sox vs Rangers &middot; Fri 7:10</text>
-        <text class="mvs" x="694" y="548" text-anchor="middle">Trillium</text>
-        <text class="mv" x="687" y="416" text-anchor="start">Long Wharf</text>
-        <text class="mv" x="674" y="462" text-anchor="start">Rowes Wharf</text>
-        <text class="mvs" x="737" y="489" text-anchor="start">Fan Pier</text>
-        <text class="mv" x="802" y="534" text-anchor="middle">Row 34 &middot; Harpoon</text>
-        <text class="mv" x="332" y="401" text-anchor="middle">Esplanade</text>
-        <text class="mv" x="424" y="456" text-anchor="middle">Back Bay brunch</text>
-
-        <!-- route labels -->
-        <text class="mvx" x="505" y="382" text-anchor="middle">FREEDOM TRAIL</text>
-        <text class="mvh" x="824" y="400" text-anchor="middle">SAT SAIL</text>
-        <text class="mvg" x="398" y="532" text-anchor="middle">GREEN LINE &middot; 15 MIN</text>
-        <text class="mvs" x="932" y="650" text-anchor="end">FERRY &middot; 45 MIN</text>
-        <text class="mvs" x="938" y="706" text-anchor="middle">GEORGES IS.</text>
-
-        <!-- area labels -->
-        <text class="marea" x="240" y="120" text-anchor="middle">CAMBRIDGE</text>
-        <text class="marea" x="566" y="182" text-anchor="middle">CHARLESTOWN</text>
-        <text class="marea" x="898" y="58" text-anchor="middle">EAST BOSTON</text>
-        <text class="marea" x="856" y="576" text-anchor="middle">SEAPORT</text>
-        <text class="marea" x="520" y="650" text-anchor="middle">SOUTH BOSTON</text>
-
-        <!-- scale -->
-        <line class="mscale" x1="40" y1="688" x2="220" y2="688"/>
-        <line class="mscale" x1="40" y1="683" x2="40" y2="693"/>
-        <line class="mscale" x1="220" y1="683" x2="220" y2="693"/>
-        <text class="mvs" x="130" y="679" text-anchor="middle">ABOUT 1 MILE</text>
-      </svg>
-      </div>
-
-      <svg class="bmapm" viewBox="0 0 620 800" role="img" aria-label="Portrait map of central Boston showing the North End home base and the stops for each day of the trip">
-        <defs>
-          <marker id="sailArwM" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-            <path d="M0,0 L10,5 L0,10 Z" class="mfharbor"/>
-          </marker>
-        </defs>
-
-        <rect class="mw" x="0" y="0" width="620" height="800"/>
-
-        <path class="ml2" d="M0,0 L430,0 C424,38 408,74 384,108 C360,140 328,162 288,176 C214,200 104,206 0,202 Z"/>
-        <path class="ml2" d="M480,0 L620,0 L620,150 C588,146 556,128 534,100 C514,74 496,38 480,0 Z"/>
-        <path class="ml" d="M0,244 C104,248 214,242 290,218 C332,204 366,182 392,152 C408,134 420,128 430,136 C440,146 442,166 436,190 C428,222 420,250 420,280 C420,316 430,350 444,384 C454,412 462,442 466,472 C472,510 490,536 520,554 C552,572 588,580 620,584 L620,800 L0,800 Z"/>
-        <ellipse class="ml2" cx="556" cy="300" rx="20" ry="13"/>
-
-        <text class="m2w" x="524" y="204" text-anchor="middle">BOSTON HARBOR</text>
-        <text class="m2w" x="112" y="228" text-anchor="middle">CHARLES RIVER</text>
-
-        <path class="rt-grn" d="M276,392 C226,410 164,442 118,462"/>
-        <path class="rt-ink" d="M430,330 C468,318 512,308 536,304"/>
-        <path class="rt-sox" d="M276,392 C312,372 334,358 352,344 C370,330 386,314 396,300 C400,264 400,224 400,194"/>
-        <path class="rt-sea" d="M426,338 C434,356 438,372 440,390 C450,420 460,458 470,498 C486,522 500,540 512,552"/>
-        <path class="rt-sead" d="M482,494 C526,458 574,458 590,486 C602,508 582,528 552,530 C530,532 508,524 492,514" marker-end="url(#sailArwM)"/>
-
-        <circle class="mp2 p-thu" cx="556" cy="80" r="10"/>
-        <circle class="mp2 p-fri" cx="400" cy="190" r="10"/>
-        <circle class="mp2 p-fri" cx="352" cy="344" r="10"/>
-        <circle class="mp2 p-fri" cx="276" cy="392" r="10"/>
-        <circle class="mp2 p-fri" cx="118" cy="462" r="10"/>
-        <circle class="mp2 p-fri" cx="392" cy="446" r="8"/>
-        <circle class="mp2 p-sat" cx="426" cy="338" r="10"/>
-        <circle class="mp2 p-sat" cx="440" cy="390" r="10"/>
-        <circle class="mp2 p-sat" cx="470" cy="498" r="8"/>
-        <circle class="mp2 p-sat" cx="516" cy="556" r="10"/>
-        <circle class="mp2 p-sun" cx="150" cy="268" r="10"/>
-        <path class="mstar" d="M396,288 L400,299 L412,299 L402,306 L406,318 L396,311 L386,318 L390,306 L380,299 L392,299 Z"/>
-
-        <text class="m2v" x="556" y="56" text-anchor="middle">LOGAN &#9992;</text>
-        <text class="m2v" x="386" y="186" text-anchor="end">USS Constitution</text>
-        <text class="m2v" x="414" y="286" text-anchor="start">North End</text>
-        <text class="m2s" x="414" y="302" text-anchor="start">home base</text>
-        <text class="m2v" x="340" y="340" text-anchor="end">Faneuil Hall</text>
-        <text class="m2v" x="264" y="388" text-anchor="end">Boston Common</text>
-        <text class="m2v" x="444" y="348" text-anchor="start">Long Wharf</text>
-        <text class="m2v" x="458" y="398" text-anchor="start">Rowes Wharf</text>
-        <text class="m2s" x="486" y="494" text-anchor="start">Fan Pier</text>
-        <text class="m2v" x="516" y="580" text-anchor="middle">Row 34 &middot; Harpoon</text>
-        <text class="m2s" x="380" y="442" text-anchor="end">Trillium</text>
-        <text class="m2v" x="150" y="252" text-anchor="middle">Esplanade</text>
-        <text class="m2v" x="112" y="446" text-anchor="middle">Fenway Park</text>
-        <text class="m2s" x="112" y="486" text-anchor="middle">Sox vs Rangers &middot; Fri 7:10</text>
-        <text class="m2s" x="556" y="274" text-anchor="middle">Georges Is.</text>
-
-        <text class="m2x" x="296" y="262" text-anchor="middle">FREEDOM TRAIL</text>
-        <text class="m2g" x="180" y="430" text-anchor="middle">GREEN LINE</text>
-        <text class="m2b" x="470" y="450" text-anchor="start">HARBORWALK</text>
-        <text class="m2h" x="556" y="552" text-anchor="middle">SAT SAIL</text>
-        
-
-        <text class="m2a" x="140" y="80" text-anchor="middle">CAMBRIDGE</text>
-        <text class="m2a" x="300" y="134" text-anchor="middle">CHARLESTOWN</text>
-        <text class="m2a" x="544" y="124" text-anchor="middle">EAST BOSTON</text>
-        <text class="m2a" x="530" y="640" text-anchor="middle">SEAPORT</text>
-        <text class="m2a" x="240" y="700" text-anchor="middle">SOUTH BOSTON</text>
-
-        <line class="mscale" x1="40" y1="748" x2="196" y2="748"/>
-        <line class="mscale" x1="40" y1="742" x2="40" y2="754"/>
-        <line class="mscale" x1="196" y1="742" x2="196" y2="754"/>
-        <text class="m2s" x="118" y="736" text-anchor="middle">ABOUT 1 MILE</text>
-      </svg>
-
-      <figcaption class="mapcap">Simplified map. Distances are honest though: Fenway to the North End is about three miles, and everything else sits inside a comfortable walk or a short T ride.</figcaption>
+  <g class="lyD">
+    <text class="mv" x="798.2" y="200.1" text-anchor="middle">LOGAN &#9992;</text>
+    <text class="mv" x="459.7" y="124.4" text-anchor="end">USS Constitution</text>
+    <text class="mv" x="510.5" y="226.1" text-anchor="start">North End</text>
+    <text class="mvs" x="510.5" y="240.1" text-anchor="start">home base</text>
+    <text class="mv" x="474.4" y="287" text-anchor="end">Faneuil Hall</text>
+    <text class="mv" x="539.3" y="279" text-anchor="start">Long Wharf</text>
+    <text class="mv" x="534.7" y="331" text-anchor="start">Rowes Wharf</text>
+    <text class="mvs" x="596.4" y="358.9" text-anchor="start">Fan Pier</text>
+    <text class="mvs" x="547.4" y="405.2" text-anchor="end">Trillium</text>
+    <text class="mv" x="577.4" y="404" text-anchor="start">Row 34</text>
+    <text class="mv" x="660.9" y="465.4" text-anchor="middle">Harpoon</text>
+    <text class="mv" x="385.5" y="364.5" text-anchor="middle">Boston Common</text>
+    <text class="mv" x="311.8" y="310.3" text-anchor="middle">Esplanade</text>
+    <text class="mv" x="112.2" y="469" text-anchor="start">Fenway Park</text>
+    <text class="mvs" x="112.2" y="487" text-anchor="start">Sox vs Rangers &#183; Fri 7:10</text>
+    <text class="mvx" x="450" y="205" text-anchor="end">FREEDOM TRAIL</text>
+    <text class="mvg" x="240" y="424" text-anchor="middle">GREEN LINE &#183; 15 MIN</text>
+    <text class="mvb" x="612" y="353" text-anchor="start">HARBORWALK</text>
+    <text class="mvh" x="647" y="228" text-anchor="middle">SAT SAIL</text>
+    <text class="mvs" x="856" y="502" text-anchor="end">FERRY TO GEORGES IS. &#183; 45 MIN</text>
+    <text class="marea" x="210" y="200" text-anchor="middle">CAMBRIDGE</text>
+    <text class="marea" x="360" y="85" text-anchor="middle">CHARLESTOWN</text>
+    <text class="marea" x="800" y="58" text-anchor="middle">EAST BOSTON</text>
+    <text class="marea" x="650" y="438" text-anchor="middle">SEAPORT</text>
+    <text class="marea" x="710" y="548" text-anchor="middle">SOUTH BOSTON</text>
+    <text class="marea" x="252" y="404" text-anchor="middle">BACK BAY</text>
+    <text class="mwl" x="160" y="362" text-anchor="middle">CHARLES RIVER</text>
+    <text class="mwl" x="762" y="332" text-anchor="middle">BOSTON HARBOR</text>
+    <line class="mscale" x1="40" y1="522" x2="218" y2="522"/><line class="mscale" x1="40" y1="516" x2="40" y2="528"/><line class="mscale" x1="218" y1="516" x2="218" y2="528"/>
+    <text class="mvs" x="129" y="512" text-anchor="middle">1 MILE</text>
+  </g>
+  <g class="lyM">
+    <text class="mvL" x="792.2" y="196.1" text-anchor="middle">LOGAN &#9992;</text>
+    <text class="mvL" x="514.5" y="232.1" text-anchor="start">NORTH END</text>
+    <text class="mvsL" x="514.5" y="256.1" text-anchor="start">home base</text>
+    <text class="mvL" x="114.2" y="430.6" text-anchor="start">FENWAY</text>
+    <text class="mvL" x="655" y="452" text-anchor="middle">SEAPORT</text>
+    <text class="mareaL" x="215" y="205" text-anchor="middle">CAMBRIDGE</text>
+    <text class="mwlL" x="768" y="330" text-anchor="middle">BOSTON HARBOR</text>
+    <line class="mscale" x1="40" y1="522" x2="218" y2="522"/><line class="mscale" x1="40" y1="514" x2="40" y2="530"/><line class="mscale" x1="218" y1="514" x2="218" y2="530"/>
+    <text class="mvsL" x="129" y="506" text-anchor="middle">1 MILE</text>
+  </g>
+</svg>
+      <figcaption class="mapcap">Shoreline traced from real coastline data, so the wharves and channels are the actual shapes. Fenway to the North End is about three miles, and everything else sits inside a comfortable walk or a short T ride. Map data &copy; OpenStreetMap contributors.</figcaption>
     </figure>
     <div class="mlegend">
       <span class="lgi"><span class="lstar">&#9733;</span>Home base &middot; North End</span>
