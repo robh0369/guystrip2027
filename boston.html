@@ -314,6 +314,21 @@ footer .row{display:flex; justify-content:space-between; gap:20px; flex-wrap:wra
   .chev{display:none}
   a{border-bottom:0}
 }
+
+/* ---------- hype video ---------- */
+.hype{display:flex; width:fit-content; align-items:center; gap:12px; margin-top:22px; font-family:var(--mono, ui-monospace, monospace); font-size:12px; font-weight:600;
+  letter-spacing:.14em; text-transform:uppercase; color:#0F1A20; background:#fff; border:0; padding:13px 18px 13px 16px; cursor:pointer;
+  box-shadow:0 10px 30px rgba(0,0,0,.35); transition:transform .15s ease, box-shadow .15s ease}
+.hype:hover{transform:translateY(-1px); box-shadow:0 14px 34px rgba(0,0,0,.45)}
+.hype:focus-visible{outline:2px solid #fff; outline-offset:3px}
+.hype .tri{width:0; height:0; border-left:11px solid #C8102E; border-top:7px solid transparent; border-bottom:7px solid transparent}
+.hype .len{color:#77838A; padding-left:10px; border-left:1px solid #C9CDC4}
+.hypeOvl{position:fixed; inset:0; z-index:9999; background:#000; display:flex; align-items:center; justify-content:center}
+.hypeOvl[hidden]{display:none}
+.hypeOvl video{width:100%; height:100%; object-fit:contain; background:#000}
+.hypeX{position:absolute; top:calc(12px + env(safe-area-inset-top, 0px)); right:calc(12px + env(safe-area-inset-right, 0px)); width:44px; height:44px;
+  border-radius:50%; border:0; background:rgba(255,255,255,.16); color:#fff; font-size:26px; line-height:44px; text-align:center; cursor:pointer; z-index:2}
+.hypeX:focus-visible{outline:2px solid #fff; outline-offset:2px}
 </style>
 
 <header class="hero">
@@ -331,6 +346,7 @@ footer .row{display:flex; justify-content:space-between; gap:20px; flex-wrap:wra
         <span class="sep">/</span>
         <span>NO CAR</span>
       </div>
+      <button type="button" class="hype" data-video="boston.mp4" aria-label="Play the Boston hype video, 0:46"><span class="tri" aria-hidden="true"></span>Play hype video<span class="len">0:46</span></button>
     </div>
   </div>
 </header>
@@ -960,5 +976,49 @@ footer .row{display:flex; justify-content:space-between; gap:20px; flex-wrap:wra
       if(e.key === "Escape" && ovl.classList.contains("on")){ closeMap(); }
     });
   }
+})();
+</script>
+
+<div class="hypeOvl" id="hypeOvl" hidden role="dialog" aria-modal="true" aria-label="Hype video">
+  <video id="hypeVid" controls preload="none"></video>
+  <button type="button" class="hypeX" id="hypeX" aria-label="Close video">&times;</button>
+</div>
+<script>
+/* Play hype video: full screen where the browser allows it (desktop, Android, iPad); iPhone Safari goes full screen
+   on its own when the video starts. Tries videos/ next to the page first, then the copies on GitHub, so the button
+   also works when the page is opened as a downloaded file. */
+(function(){
+  var ovl = document.getElementById("hypeOvl"), v = document.getElementById("hypeVid"), x = document.getElementById("hypeX"), last = null;
+  var BASES = ["videos/", "https://robh0369.github.io/guystrip2027/videos/", "https://raw.githubusercontent.com/robh0369/guystrip2027/main/videos/"];
+  function fsEl(){ return document.fullscreenElement || document.webkitFullscreenElement; }
+  function close(){
+    if(ovl.hidden) return;
+    try { v.pause(); } catch(e){}
+    ovl.hidden = true; document.body.style.overflow = "";
+    if(fsEl()){ var ex = document.exitFullscreen || document.webkitExitFullscreen; if(ex){ try { var r = ex.call(document); if(r && r.catch) r.catch(function(){}); } catch(e){} } }
+    while(v.firstChild){ v.removeChild(v.firstChild); } v.removeAttribute("src"); try { v.load(); } catch(e){}
+    if(last){ last.focus(); last = null; }
+  }
+  function open(btn){
+    var name = btn.getAttribute("data-video"); last = btn;
+    v.innerHTML = BASES.map(function(b){ return '<source src="' + b + name + '" type="video/mp4">'; }).join("");
+    ovl.hidden = false; document.body.style.overflow = "hidden";
+    var req = ovl.requestFullscreen || ovl.webkitRequestFullscreen;
+    if(req){ try { var r = req.call(ovl); if(r && r.catch) r.catch(function(){}); } catch(e){} }
+    v.load();
+    var p = v.play(); if(p && p.catch) p.catch(function(){});
+    x.focus();
+  }
+  document.addEventListener("click", function(e){
+    var b = e.target && e.target.closest ? e.target.closest(".hype") : null;
+    if(b){ e.preventDefault(); open(b); }
+  });
+  x.addEventListener("click", close);
+  v.addEventListener("ended", close);
+  v.addEventListener("webkitendfullscreen", close);
+  function fsChange(){ if(!fsEl() && !ovl.hidden) close(); }
+  document.addEventListener("fullscreenchange", fsChange);
+  document.addEventListener("webkitfullscreenchange", fsChange);
+  document.addEventListener("keydown", function(e){ if(e.key === "Escape") close(); });
 })();
 </script>
