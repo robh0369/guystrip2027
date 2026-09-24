@@ -94,12 +94,14 @@ a:hover{border-bottom-color:var(--link)}
   transition:border-color .15s, color .15s, background .15s;
 }
 .ubtn:hover{border-color:var(--ink-2); color:var(--ink)}
-.ubtn.umap{background:var(--accent-2); border-color:var(--accent-2); color:var(--paper)}
+.ubtn.umap{background:var(--accent-2); border-color:var(--accent-2); color:var(--paper); font-size:12px; padding:8px 14px}
+.utility .ubtns{align-items:stretch}
+.secctl{display:flex; justify-content:flex-end; gap:8px; padding:18px 0 14px}
 .ubtn.umap:hover{filter:brightness(1.1); color:var(--paper)}
 .switcher{display:flex; gap:0; border:1px solid var(--rule)}
 .switcher a{
-  font-family:var(--mono); font-size:10.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
-  padding:7px 11px; color:var(--ink-3); border:0; border-left:1px solid var(--rule);
+  font-family:var(--mono); font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+  padding:8px 13px; color:var(--ink-3); border:0; border-left:1px solid var(--rule);
 }
 .switcher a:first-child{border-left:0}
 .switcher a:hover{color:var(--ink); background:var(--surface-2)}
@@ -271,7 +273,10 @@ footer .row{display:flex; justify-content:space-between; gap:20px; flex-wrap:wra
   .utility .brand{display:none}
   .utility .in{justify-content:center; gap:8px}
   .ubtns{gap:6px; justify-content:center}
-  .switcher a{padding:7px 8px; font-size:9.5px; letter-spacing:.06em}
+  .ubtns{flex-wrap:nowrap}
+  .switcher a{padding:9px 9px; font-size:12px; letter-spacing:.04em}
+  .ubtn.umap{padding:9px 10px; letter-spacing:.04em}
+  .secctl{justify-content:center; padding:16px 0 12px}
   .movl{padding:10px}
   .mpanel{padding:14px 12px 18px}
   .mphead h3{font-size:22px}
@@ -316,7 +321,7 @@ footer .row{display:flex; justify-content:space-between; gap:20px; flex-wrap:wra
   body{font-size:10.5pt}
   .hero{min-height:260px}
   .utility{position:static}
-  .ubtns{display:none}
+  .ubtns,.secctl{display:none}
   .movl{display:none !important}
   details{break-inside:avoid}
   details:not([open]) > *:not(summary){display:revert !important}
@@ -379,8 +384,6 @@ body[data-active="sanjuan"]{--accent:#C8102E; --accent-2:#0E7C7B; --accent-3:#B0
         <a href="#montreal" data-go="montreal">Montr&eacute;al</a>
       </nav>
       <button type="button" class="ubtn umap" data-act="map">Map</button>
-      <button type="button" class="ubtn" data-act="expand">Expand all</button>
-      <button type="button" class="ubtn" data-act="collapse">Collapse all</button>
     </div>
   </div>
 </div>
@@ -418,6 +421,11 @@ body[data-active="sanjuan"]{--accent:#C8102E; --accent-2:#0E7C7B; --accent-3:#B0
 </div>
 
 <div class="wrap">
+
+<div class="secctl">
+  <button type="button" class="ubtn" data-act="expand">Expand all</button>
+  <button type="button" class="ubtn" data-act="collapse">Collapse all</button>
+</div>
 
 <!-- ============ FENWAY ============ -->
 <details class="sec">
@@ -986,8 +994,6 @@ body[data-active="sanjuan"]{--accent:#C8102E; --accent-2:#0E7C7B; --accent-3:#B0
         <a href="#montreal" data-go="montreal">Montr&eacute;al</a>
       </nav>
       <button type="button" class="ubtn umap" data-act="map">Map</button>
-      <button type="button" class="ubtn" data-act="expand">Expand all</button>
-      <button type="button" class="ubtn" data-act="collapse">Collapse all</button>
     </div>
   </div>
 </div>
@@ -1025,6 +1031,11 @@ body[data-active="sanjuan"]{--accent:#C8102E; --accent-2:#0E7C7B; --accent-3:#B0
 </div>
 
 <div class="wrap">
+
+<div class="secctl">
+  <button type="button" class="ubtn" data-act="expand">Expand all</button>
+  <button type="button" class="ubtn" data-act="collapse">Collapse all</button>
+</div>
 
 <!-- ============ THE BIG NIGHT ============ -->
 <details class="sec">
@@ -1618,8 +1629,6 @@ body[data-active="sanjuan"]{--accent:#C8102E; --accent-2:#0E7C7B; --accent-3:#B0
         <a href="#montreal" data-go="montreal">Montr&eacute;al</a>
       </nav>
       <button type="button" class="ubtn umap" data-act="map">Map</button>
-      <button type="button" class="ubtn" data-act="expand">Expand all</button>
-      <button type="button" class="ubtn" data-act="collapse">Collapse all</button>
     </div>
   </div>
 </div>
@@ -1657,6 +1666,11 @@ body[data-active="sanjuan"]{--accent:#C8102E; --accent-2:#0E7C7B; --accent-3:#B0
 </div>
 
 <div class="wrap">
+
+<div class="secctl">
+  <button type="button" class="ubtn" data-act="expand">Expand all</button>
+  <button type="button" class="ubtn" data-act="collapse">Collapse all</button>
+</div>
 
 <!-- ============ RACE WEEK ============ -->
 <details class="sec">
