@@ -155,6 +155,54 @@ a:hover{border-bottom-color:var(--link)}
 .mphead{display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:14px}
 .mphead h3{font-size:28px; text-transform:uppercase}
 
+/* ---------- trip vote ---------- */
+.ubtn.uvote{background:var(--accent); border-color:var(--accent); color:var(--paper); font-size:12px; padding:8px 14px}
+.ubtn.uvote:hover{filter:brightness(1.1); color:var(--paper)}
+.vpanel{width:min(780px,100%); border-top-color:var(--accent)}
+.vsub{color:var(--ink-2); font-size:15px; line-height:1.5; margin:-6px 0 20px; max-width:62ch}
+.vgrid{display:grid; grid-template-columns:1fr 1fr; gap:28px}
+.vblock h4{display:flex; justify-content:space-between; gap:10px; margin:0 0 8px; font-family:var(--mono); font-size:10.5px; font-weight:600; letter-spacing:.15em; text-transform:uppercase; color:var(--ink-3)}
+.vrows{list-style:none; margin:0; padding:0}
+.vrow{display:grid; grid-template-columns:1fr auto; gap:6px 10px; padding:11px 0; border-top:1px solid var(--rule-soft)}
+.vtrip{font-family:var(--display); font-size:25px; font-weight:700; text-transform:uppercase; line-height:1}
+.vtag{margin-left:8px; font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:.12em; vertical-align:middle; color:var(--accent)}
+.vpts{align-self:end; font-family:var(--mono); font-size:12px; font-weight:600; color:var(--ink-2); white-space:nowrap}
+.vbar{grid-column:1/-1; height:8px; background:var(--surface-2)}
+.vbar i{display:block; height:100%; width:0; background:var(--ink-3); transition:width .45s}
+.vrow.lead .vbar i{background:var(--accent)}
+.vempty{padding:14px 0; border-top:1px solid var(--rule-soft); color:var(--ink-2); font-size:15px}
+.vnames{display:flex; flex-wrap:wrap; gap:6px; margin:0 0 16px; padding:0; border:0}
+.vnames label{position:relative}
+.vnames input{position:absolute; inset:0; margin:0; opacity:0; cursor:pointer}
+.vnames span{display:block; padding:8px 12px; border:1px solid var(--rule); font-family:var(--mono); font-size:12px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-2)}
+.vnames input:checked + span{background:var(--ink); border-color:var(--ink); color:var(--paper)}
+.vnames input:focus-visible + span{outline:2px solid var(--accent); outline-offset:2px}
+.vhint{margin:0 0 8px; font-size:14px; color:var(--ink-2)}
+.vpicks{display:grid; gap:6px}
+.vpick{display:flex; align-items:center; gap:12px; width:100%; padding:10px 12px; text-align:left; cursor:pointer; background:var(--surface); border:1px solid var(--rule); color:var(--ink); font-family:var(--display); font-size:22px; font-weight:700; text-transform:uppercase; line-height:1}
+.vpick:hover{border-color:var(--ink-3)}
+.vpick:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.vn{flex:none; display:grid; place-items:center; width:30px; height:30px; border:1px dashed var(--rule); font-family:var(--mono); font-size:12px; font-weight:600; color:var(--ink-3)}
+.vpick[aria-pressed="true"] .vn{background:var(--accent); border:1px solid var(--accent); color:var(--paper)}
+.vsubmit{width:100%; margin-top:14px; padding:12px; border:0; cursor:pointer; background:var(--ink); color:var(--paper); font-family:var(--mono); font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase}
+.vsubmit:disabled{opacity:.4; cursor:not-allowed}
+.vmsg{min-height:1.4em; margin:10px 0 0; font-size:14px; color:var(--ink-2)}
+.vmsg.err{color:var(--accent)}
+.vwho{margin-top:26px}
+.vwho table{width:100%; border-collapse:collapse; font-size:14px}
+.vwho th,.vwho td{padding:7px 8px 7px 0; text-align:left; border-top:1px solid var(--rule-soft)}
+.vwho thead th{border-top:0; font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3)}
+.vwho tbody th{font-family:var(--mono); font-size:12px; letter-spacing:.06em; text-transform:uppercase}
+.vwho .pend td{color:var(--ink-3); font-style:italic}
+@media (max-width:640px){
+  .vgrid{grid-template-columns:1fr; gap:22px}
+  .vwho table{font-size:13px}
+}
+@media (max-width:400px){
+  .switcher a{padding:9px 6px; letter-spacing:0; white-space:nowrap}
+  .utility .ubtn.umap,.utility .ubtn.uvote{padding:9px 8px; letter-spacing:.02em}
+}
+
 /* ---------- day dots ---------- */
 .ddot{display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:7px; vertical-align:1px}
 
@@ -275,7 +323,7 @@ footer .row{display:flex; justify-content:space-between; gap:20px; flex-wrap:wra
   .ubtns{gap:6px; justify-content:center}
   .ubtns{flex-wrap:nowrap}
   .switcher a{padding:9px 9px; font-size:12px; letter-spacing:.04em}
-  .ubtn.umap{padding:9px 10px; letter-spacing:.04em}
+  .ubtn.umap,.ubtn.uvote{padding:9px 10px; letter-spacing:.04em}
   .secctl{justify-content:center; padding:16px 0 12px}
   .movl{padding:10px}
   .mpanel{padding:14px 12px 18px}
@@ -384,6 +432,7 @@ body[data-active="sanjuan"]{--accent:#C8102E; --accent-2:#0E7C7B; --accent-3:#B0
         <a href="#montreal" data-go="montreal">Montr&eacute;al</a>
       </nav>
       <button type="button" class="ubtn umap" data-act="map">Map</button>
+      <button type="button" class="ubtn uvote">Vote</button>
     </div>
   </div>
 </div>
@@ -994,6 +1043,7 @@ body[data-active="sanjuan"]{--accent:#C8102E; --accent-2:#0E7C7B; --accent-3:#B0
         <a href="#montreal" data-go="montreal">Montr&eacute;al</a>
       </nav>
       <button type="button" class="ubtn umap" data-act="map">Map</button>
+      <button type="button" class="ubtn uvote">Vote</button>
     </div>
   </div>
 </div>
@@ -1629,6 +1679,7 @@ body[data-active="sanjuan"]{--accent:#C8102E; --accent-2:#0E7C7B; --accent-3:#B0
         <a href="#montreal" data-go="montreal">Montr&eacute;al</a>
       </nav>
       <button type="button" class="ubtn umap" data-act="map">Map</button>
+      <button type="button" class="ubtn uvote">Vote</button>
     </div>
   </div>
 </div>
@@ -2409,5 +2460,200 @@ body[data-active="sanjuan"]{--accent:#C8102E; --accent-2:#0E7C7B; --accent-3:#B0
   document.addEventListener("fullscreenchange", fsChange);
   document.addEventListener("webkitfullscreenchange", fsChange);
   document.addEventListener("keydown", function(e){ if(e.key === "Escape") close(); });
+})();
+</script>
+<div class="movl vovl" id="voteOvl" role="dialog" aria-modal="true" aria-labelledby="voteTitle">
+  <div class="mpanel vpanel">
+    <div class="mphead">
+      <h3 id="voteTitle">Pick the Trip</h3>
+      <button type="button" class="ubtn" id="voteClose">Close</button>
+    </div>
+    <p class="vsub">Rank all three. Your 1st choice gets 3 points, 2nd gets 2, 3rd gets 1. Most points wins; ties go to the trip with more 1st-place votes. You can change your vote any time.</p>
+    <div class="vgrid">
+      <section class="vblock" aria-labelledby="vTallyH">
+        <h4 id="vTallyH"><span>Live tally</span><span id="vCount"></span></h4>
+        <div id="vTally" aria-live="polite"></div>
+      </section>
+      <form class="vblock" id="vForm" novalidate>
+        <h4><span>Your vote</span></h4>
+        <fieldset class="vnames" id="vNames">
+          <legend class="vhint">Who are you?</legend>
+        </fieldset>
+        <p class="vhint">Tap the trips in order, favorite first.</p>
+        <div class="vpicks" id="vPicks"></div>
+        <button type="submit" class="vsubmit" id="vSubmit" disabled>Cast my vote</button>
+        <p class="vmsg" id="vMsg" role="status"></p>
+      </form>
+    </div>
+    <section class="vwho" aria-labelledby="vWhoH">
+      <div class="vblock"><h4 id="vWhoH"><span>Who voted what</span></h4></div>
+      <table>
+        <thead><tr><th scope="col">Name</th><th scope="col">1st</th><th scope="col">2nd</th><th scope="col">3rd</th></tr></thead>
+        <tbody id="vWho"></tbody>
+      </table>
+    </section>
+  </div>
+</div>
+
+<script>
+/* Trip vote. Votes live in a Google Sheet behind a Google Apps Script web app (voting/Code.gs); the page only
+   reads the tally and posts rankings. Posting as text/plain keeps it a simple CORS request (no preflight). */
+(function(){
+  var VOTE_API = "https://script.google.com/macros/s/AKfycbxr_XBKa0zUWPf465N23f1ELRI5tCEkF0f2rieq31RnCA-tGPZvyfUwKGaQWeJYWMNF/exec";
+  var ROSTER = ["Matt","Jerry","Jeff","Mike","Brian","Rob"];
+  var TRIPS  = ["boston","sanjuan","montreal"];
+  var LABEL  = {boston:"Boston", sanjuan:"San Juan", montreal:"Montréal"};
+  var ORD    = ["1st","2nd","3rd"];
+  var REFRESH_MS = 20000;
+
+  var ovl = document.getElementById("voteOvl"), closeBtn = document.getElementById("voteClose");
+  var tallyEl = document.getElementById("vTally"), countEl = document.getElementById("vCount"), whoEl = document.getElementById("vWho");
+  var namesEl = document.getElementById("vNames"), picksEl = document.getElementById("vPicks");
+  var form = document.getElementById("vForm"), submitBtn = document.getElementById("vSubmit"), msgEl = document.getElementById("vMsg");
+  var state = null, me = null, picks = [], timer = null, lastBtn = null, busy = false;
+
+  function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+  function msg(text, isErr){ msgEl.textContent = text || ""; msgEl.className = "vmsg" + (isErr ? " err" : ""); }
+  function remember(name){ try { localStorage.setItem("gt27-voter", name); } catch(e){} }
+  function recall(){ try { return localStorage.getItem("gt27-voter"); } catch(e){ return null; } }
+  function voterRecord(name){
+    if(!state) return null;
+    for(var i = 0; i < state.voters.length; i++){ if(state.voters[i].name === name) return state.voters[i]; }
+    return null;
+  }
+
+  namesEl.insertAdjacentHTML("beforeend", ROSTER.map(function(n){
+    return '<label><input type="radio" name="voter" value="' + esc(n) + '"><span>' + esc(n) + '</span></label>';
+  }).join(""));
+  picksEl.innerHTML = TRIPS.map(function(t){
+    return '<button type="button" class="vpick" data-trip="' + t + '" aria-pressed="false"><span class="vn" aria-hidden="true"></span><span>' + LABEL[t] + '</span></button>';
+  }).join("");
+
+  function renderPicks(){
+    var btns = picksEl.querySelectorAll(".vpick");
+    for(var i = 0; i < btns.length; i++){
+      var t = btns[i].getAttribute("data-trip"), k = picks.indexOf(t);
+      btns[i].setAttribute("aria-pressed", k >= 0 ? "true" : "false");
+      btns[i].querySelector(".vn").textContent = k >= 0 ? ORD[k] : "";
+      btns[i].setAttribute("aria-label", LABEL[t] + (k >= 0 ? ", ranked " + ORD[k] : ", not ranked yet"));
+    }
+    submitBtn.disabled = busy || !VOTE_API || !me || picks.length !== TRIPS.length;
+    submitBtn.textContent = busy ? "Saving…" : (me && voterRecord(me) ? "Update my vote" : "Cast my vote");
+  }
+
+  function render(){
+    if(!state) return;
+    var t = state.tally, n = state.voters.length, max = ROSTER.length * 3;
+    countEl.textContent = n + " of " + ROSTER.length + " voted";
+    if(!n){
+      tallyEl.innerHTML = '<div class="vempty">No votes yet. Be the first.</div>';
+    } else {
+      var rows = TRIPS.map(function(k){ return {k:k, p:t[k].points, f:t[k].first}; })
+        .sort(function(a, b){ return b.p - a.p || b.f - a.f; });
+      var tied = rows[0].p === rows[1].p && rows[0].f === rows[1].f;
+      tallyEl.innerHTML = '<ul class="vrows">' + rows.map(function(r, i){
+        var lead = i === 0 && !tied;
+        var tag = lead ? '<span class="vtag">Leading</span>' : (tied && r.p === rows[0].p && r.f === rows[0].f ? '<span class="vtag">Tied</span>' : "");
+        return '<li class="vrow' + (lead ? " lead" : "") + '"><span class="vtrip">' + LABEL[r.k] + tag + '</span>' +
+          '<span class="vpts">' + r.p + ' pts &middot; ' + r.f + '&times; 1st</span>' +
+          '<span class="vbar" aria-hidden="true"><i style="width:' + Math.round(r.p / max * 100) + '%"></i></span></li>';
+      }).join("") + '</ul>';
+    }
+    whoEl.innerHTML = ROSTER.map(function(name){
+      var v = voterRecord(name);
+      if(!v) return '<tr class="pend"><th scope="row">' + esc(name) + '</th><td colspan="3">Hasn&rsquo;t voted</td></tr>';
+      return '<tr><th scope="row">' + esc(name) + '</th>' + v.ranking.map(function(k){ return '<td>' + esc(LABEL[k] || k) + '</td>'; }).join("") + '</tr>';
+    }).join("");
+    renderPicks();
+  }
+
+  function load(){
+    if(!VOTE_API) return;
+    fetch(VOTE_API, {cache: "no-store"})
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if(!d || !d.ok) return;
+        var first = !state; state = d;
+        if(first && me && !busy){ selectVoter(me, true); }
+        render();
+      })
+      .catch(function(){
+        if(!state){ tallyEl.innerHTML = '<div class="vempty">Couldn&rsquo;t reach the vote sheet. Check your connection and reopen this panel.</div>'; }
+      });
+  }
+
+  function selectVoter(name, quiet){
+    me = name; remember(name);
+    var rec = voterRecord(name);
+    picks = rec ? rec.ranking.slice() : [];
+    if(!quiet){ msg(rec ? "That’s your current vote. Change the order and hit Update to revise it." : ""); }
+    renderPicks();
+  }
+
+  namesEl.addEventListener("change", function(e){ if(e.target.name === "voter"){ selectVoter(e.target.value); } });
+
+  picksEl.addEventListener("click", function(e){
+    var b = e.target.closest ? e.target.closest(".vpick") : null;
+    if(!b || busy) return;
+    var t = b.getAttribute("data-trip"), k = picks.indexOf(t);
+    if(k >= 0){ picks = picks.slice(0, k); }
+    else { picks.push(t); }
+    if(picks.length === TRIPS.length - 1){
+      for(var i = 0; i < TRIPS.length; i++){ if(picks.indexOf(TRIPS[i]) < 0){ picks.push(TRIPS[i]); break; } }
+    }
+    msg(me ? "" : "Pick your name first.", !me);
+    renderPicks();
+  });
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    if(submitBtn.disabled) return;
+    busy = true; msg(""); renderPicks();
+    fetch(VOTE_API, {method: "POST", body: JSON.stringify({name: me, ranking: picks})})
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if(!d || !d.ok){ throw new Error(d && d.error ? d.error : "Something went wrong."); }
+        state = d; busy = false; render(); msg("Saved. Thanks, " + me + ".");
+      })
+      .catch(function(err){
+        busy = false; renderPicks();
+        msg("Vote not saved: " + (err && err.message ? err.message : "couldn’t reach the vote sheet.") + " Try again.", true);
+      });
+  });
+
+  function open(btn){
+    lastBtn = btn || null;
+    ovl.classList.add("on"); document.body.style.overflow = "hidden";
+    var saved = recall();
+    if(!me && saved && ROSTER.indexOf(saved) >= 0){
+      var r = namesEl.querySelector('input[value="' + saved + '"]');
+      if(r){ r.checked = true; }
+      selectVoter(saved, true);
+    }
+    if(!VOTE_API){
+      countEl.textContent = "";
+      tallyEl.innerHTML = '<div class="vempty">Voting opens once the vote sheet is connected.</div>';
+    } else {
+      if(!state){ tallyEl.innerHTML = '<div class="vempty">Loading the tally…</div>'; }
+      load(); clearInterval(timer); timer = setInterval(load, REFRESH_MS);
+    }
+    renderPicks();
+    closeBtn.focus();
+  }
+  function close(){
+    if(!ovl.classList.contains("on")) return;
+    ovl.classList.remove("on"); document.body.style.overflow = "";
+    clearInterval(timer); timer = null;
+    if(lastBtn){ lastBtn.focus(); lastBtn = null; }
+  }
+
+  document.addEventListener("click", function(e){
+    var b = e.target.closest ? e.target.closest(".uvote") : null;
+    if(b){ e.preventDefault(); open(b); }
+  });
+  closeBtn.addEventListener("click", close);
+  ovl.addEventListener("click", function(e){ if(e.target === ovl){ close(); } });
+  document.addEventListener("keydown", function(e){ if(e.key === "Escape"){ close(); } });
+  renderPicks();
 })();
 </script>
