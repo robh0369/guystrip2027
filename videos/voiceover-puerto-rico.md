@@ -1,36 +1,41 @@
 # San Juan — voice-over script
 
-**Runs to:** `videos/puerto-rico.mp4` (1:15)
-**Word count:** 167 · **Pace:** ~2.3 words/sec, conversational
-**Tone:** Warmer than the other two. This is the one that sells itself, so
-don't oversell it — the pitch is that it's the easiest trip of the three.
+**Runs to:** `videos/puerto-rico.mp4` (1:15) · mixed version: `videos/puerto-rico-narrated.mp4`
+**Voice track:** `audio-output/puerto-rico.mp3` (timed to the video from 0:00)
+**Voice:** ElevenLabs `146S4bQ5HIfrDfaJKita` · **Model:** `eleven_v3`, one continuous take (stability 0.0 "Creative", seed 2027), natural speed
 
-| Time | Line |
-| --- | --- |
-| 0:00–0:07 | Same weekend as Boston. Eighty-eight degrees, US dollars, no passports. |
-| 0:07–0:18 | Thursday we're in Old San Juan for golden hour on the blue cobblestones. Dinner in the old city, then La Factoría — no sign on the door, six bars inside. |
-| 0:18–0:30 | Friday, El Morro the moment it opens, before the heat and the cruise crowd. Six levels of gun batteries on a headland over the water. |
-| 0:30–0:39 | The sea wall path back, the tunnels under San Cristóbal, then a ferry across the bay to the Bacardí distillery. |
-| 0:39–0:48 | At ten, La Placita. The streets close to cars, salsa comes out of every bar, and it runs till three. |
-| 0:48–0:58 | Saturday is the one early start. El Yunque at eight — the tower, then the trail down to a swimming hole in the rainforest. |
-| 0:58–1:09 | One o'clock, a catamaran out to an empty island. Four hours, open bar, back by five. Fried food at the roadside kiosks on the way home. |
-| 1:09–1:15 | Sunday we swim, eat breakfast, and fly home. It's a domestic flight. |
+**The job:** the screen already tells them *what* the plan is. The voice sells *why
+they can't miss it*. Never read the caption back. This is the beach trip: heat,
+rum, salsa, and the easiest travel of the three.
+
+**Tone:** Sun-drunk and delighted, like he's already got a drink in his hand.
+Warm and loose, still big. It peaks on Friday night.
+
+| Voice in | On screen | Line |
+| --- | --- | --- |
+| 0:00.4 | "Six guys. Three nights. 88 degrees." → SAN JUAN | [excited] Swap the jackets for flip-flops, boys... we're going to SAN JUAN! |
+| — | Title, sea, May 20–23 (music up, no voice) | |
+| 0:09.6 | Thursday, Old San Juan at golden hour | Night one: cobblestones, golden light, a cold drink in hand... then an unmarked door with six bars hiding behind it. |
+| 0:18.75 | Friday morning, the forts | Friday, we storm a five-hundred-year-old fortress like we own the place... then go straight to the source of the rum. |
+| 0:28.3 | Friday night, salsa | [shouting] And Friday night? The streets shut down, the salsa kicks in, and nobody goes home till three a.m.! |
+| 0:37.5 | Saturday 8 a.m., the rainforest | Saturday, we trade the hangover for a rainforest. Waterfalls, jungle, and a swimming hole that cures anything. |
+| 0:47 | Saturday afternoon, the catamaran | Then we sail to a deserted island. Snorkels, sunshine, an open bar... [laughs] and absolutely nowhere to be. |
+| 0:56.2 | Sunday, one last swim | Sunday, one last swim in the ocean... and we fly home. No passport. No customs. No excuses. |
+| 1:06.3 | Make it SAN JUAN | Six guys. Eighty-eight degrees. [excited] Who's in? |
 
 ## Notes for the read
 
-- **El Morro** — "el MOR-oh". **San Cristóbal** — "san kris-TOH-bal".
-  **La Factoría** — "la fac-tor-EE-ah". **La Placita** — "la plah-SEE-tah".
-  **El Yunque** — "el YOON-kay".
-- **"It's a domestic flight"** is the closing argument — same money, no passport,
-  no customs. Throw it away rather than punching it.
-- **0:48–0:58** is the only place the energy drops on purpose. Early start,
-  quiet rainforest, then the boat picks it back up.
+- **Bracketed cues** (`[excited]`, `[shouting]`, `[laughs]`) are ElevenLabs v3 audio
+  tags. They direct the delivery and aren't spoken.
+- **Energy shape:** bright open, easy and warm through Thursday and the forts,
+  peak on Friday night, a lazy grin for the rainforest and the island, then land
+  "No passport. No customs. No excuses." as the closing argument.
+- **The closer** finishes before the music fades at 1:12.
 
-## If the edit runs long or short
+## If the edit changes
 
-- **Cut first:** the Bacardí half of the 0:30–0:39 line.
-- **Add if short:** after the kiosks — *"Whole fried snapper and a three-dollar
-  beer. Best food of the weekend."*
+- **Tighten:** drop "a cold drink in hand" from Thursday, or "Snorkels, sunshine"
+  from Saturday.
 - **Budget line, if the edit wants a number:** *"Call it a thousand a man, before
   flights."* (Full range on the page is $825–1,170.)
 - **Do not** mention the bioluminescent bay. The 20th is a full moon that year
